@@ -21,14 +21,22 @@ namespace RuneOS.Commands
 
             try
             {
-                var files = Directory.GetFiles(@"0:\"+args[0]);
+                var files = Directory.GetFiles(@"0:\" + args[0]);
+                var Dir = Directory.GetDirectories(@"0:\"+ args[0]);
                 
                 foreach (var file1 in files)
                 {
-
-                    Console.WriteLine(file1);
+                    Console.WriteLine(args[0]);
+                    Console.WriteLine("<FILE> " + file1);
 
                 }
+                foreach (var subDir in Dir)
+                {
+                    Console.WriteLine("<DIR> " + subDir);
+
+
+                }
+
             }
             catch (Exception e)
             {

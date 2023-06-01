@@ -10,6 +10,10 @@ using System;
 using RuneOS.Graphics;
 using System.ComponentModel;
 using System.IO.Enumeration;
+using Cosmos.System.Graphics;
+using Cosmos.HAL;
+using Cosmos.HAL.BlockDevice.Registers;
+using RuneOS.Utils;
 
 namespace RuneOS
 {
@@ -19,16 +23,18 @@ namespace RuneOS
         private CommandManager commandManager;
         private CosmosVFS vfs;
         public static GUI gui;
+        
 
 
-        
-           
-          
 
-        
-        
+
+
+
+
         protected override void BeforeRun()
         {
+
+
             var fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
 
@@ -49,7 +55,8 @@ namespace RuneOS
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Clear();
             Console.WriteLine(logo);
-
+            
+        
             this.commandManager = new CommandManager();
 
             Console.WriteLine("RuneOS Boot Menu");
@@ -74,7 +81,7 @@ namespace RuneOS
                 Kernel.gui.handleGUInputs();
                 return;
             }
-            Console.Write("$:0/>");
+            Console.Write("$:0/" + ">");
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
             //if (response == "read")

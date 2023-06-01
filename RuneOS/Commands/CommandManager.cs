@@ -28,6 +28,7 @@ namespace RuneOS.Commands
             this.commands.Add(new rmdir("rmdir"));
             this.commands.Add(new mkdir("mkdir"));
             this.commands.Add(new ChangeDir("peek"));
+            this.commands.Add(new Debug("debug"));
             //this.commands.Add(new File("io"));
         
         }

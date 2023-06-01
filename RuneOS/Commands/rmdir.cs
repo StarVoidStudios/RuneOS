@@ -21,7 +21,7 @@ namespace RuneOS.Commands
 
             try
             {
-                Directory.Delete(args[0]);
+                Directory.Delete(@"0:\" + args[0]);
                 Console.WriteLine("Directory " + args[0] + " Was Removed");
             }
             catch (Exception e)
