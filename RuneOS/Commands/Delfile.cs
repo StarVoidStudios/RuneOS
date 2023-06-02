@@ -21,8 +21,10 @@ namespace RuneOS.Commands
 
             try
             {
-                File.Delete(@"0:\" + args[0]);
+                File.Delete(Kernel.CurrentDirectory + args[0]);
                 Console.WriteLine("File " + args[0] + " Was Removed");
+
+
             }
             catch (Exception e)
             {

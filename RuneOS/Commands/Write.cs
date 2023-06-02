@@ -20,7 +20,7 @@ namespace RuneOS.Commands
 
             try
             {   
-                var file = @"0:\"+args[0];
+                var file = Kernel.CurrentDirectory + args[0];
                 Console.WriteLine("Input Text");
                 var text = Console.ReadLine();
                 File.WriteAllText(file, text);

@@ -14,8 +14,8 @@ namespace RuneOS.Commands
 
         public override string execute(string[] args)
         {
-            var directory_list = Directory.GetFiles(@"0:\");
-            var directory = Directory.GetDirectories(@"0:\");
+            var directory_list = Directory.GetFiles(Kernel.CurrentDirectory);
+            var directory = Directory.GetDirectories(Kernel.CurrentDirectory);
 
             try
             {

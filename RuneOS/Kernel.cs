@@ -27,20 +27,17 @@ namespace RuneOS
         private CosmosVFS vfs;
         public static GUITEST gui;
 
-        private static Canvas canvas;
 
-        [ManifestResourceStream(ResourceName = "testimg.bmp")] public static byte[] test_image;
-        public static Bitmap bmp = new Bitmap(test_image);
+        public static string CurrentDirectory = @"0:\";
+        public static string CurrentVolume = @"0:\";
 
-
-
-
-
+        public static CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
+        
 
         protected override void BeforeRun()
         {
             
-            var fs = new Sys.FileSystem.CosmosVFS();
+           // var fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
 
             var logo = @" 
@@ -67,20 +64,12 @@ namespace RuneOS
             Console.WriteLine("RuneOS Boot Menu");
             Console.WriteLine("FileSystem: " + fs_type);
             Console.WriteLine("Free Disk: " + mbSpace + "MB");
-            
+            //Console.ForegroundColor = ConsoleColor.White;
 
         }
 
         protected override void Run()
         {
-
-            canvas = FullScreenCanvas.GetFullScreenCanvas();
-            canvas.DrawFilledRectangle(new Pen(Color.White), 0, 0, 1920, 1080);
-            canvas.DrawImage(bmp, 50, 50);
-
-            Heap.Collect();
-
-            canvas.Display();
 
             var userFiles = @"0:\users.dat";
 
@@ -90,7 +79,7 @@ namespace RuneOS
             }
 
 
-            Console.Write("$:" + ">");
+            Console.Write("$:"+ CurrentDirectory + ">");
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
             //if (response == "read")

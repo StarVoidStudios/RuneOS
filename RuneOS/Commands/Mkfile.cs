@@ -20,7 +20,7 @@ namespace RuneOS.Commands
 
             try
             {
-                var file_stream = File.Create(@"0:\" + args[0]);
+                var file_stream = File.Create(Kernel.CurrentDirectory + args[0]);
                 Console.WriteLine("File "+ args[0]+ " Was Created");
             }
             catch (Exception e)
