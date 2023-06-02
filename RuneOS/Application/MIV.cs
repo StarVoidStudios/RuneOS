@@ -284,7 +284,7 @@ namespace RuneOS.Application
                 else if (!File.Exists(Kernel.CurrentDirectory + file))
                 {
                     Console.WriteLine("Creating file!");
-                    File.Create(@"0:\" +   file);
+                    File.Create(Kernel.CurrentDirectory +   file);
                 }
                 Console.Clear();
             }
