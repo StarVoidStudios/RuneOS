@@ -23,10 +23,12 @@ namespace RuneOS.Commands
             {
                 var files = Directory.GetFiles(@"0:\" + args[0]);
                 var Dir = Directory.GetDirectories(@"0:\"+ args[0]);
-                
+
+
+                Console.WriteLine(args[0]);
                 foreach (var file1 in files)
                 {
-                    Console.WriteLine(args[0]);
+                
                     Console.WriteLine("<FILE> " + file1);
 
                 }

@@ -81,7 +81,7 @@ namespace RuneOS
                 Kernel.gui.handleGUInputs();
                 return;
             }
-            Console.Write("$:0/" + ">");
+            Console.Write("$:" + ">");
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
             //if (response == "read")
