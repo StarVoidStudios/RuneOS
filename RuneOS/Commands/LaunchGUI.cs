@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cosmos.System.Graphics;
 using RuneOS.Graphics;
+using RuneOS.Utils;
 
 namespace RuneOS.Commands
 {
@@ -16,11 +17,11 @@ namespace RuneOS.Commands
         {
 
             if (Kernel.gui != null)
-                return "GUI ALREADY ACTIVE";
+            return "GUI ALREADY ACTIVE";
 
-            Kernel.gui = new GUI();
             
 
+            Debug.ErrorScreen("0x000000: DISABLED BY 0001A");
 
 
 

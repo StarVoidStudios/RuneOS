@@ -8,9 +8,9 @@ using RuneOS.Utils;
 
 namespace RuneOS.Commands
 {
-    public class Debug : Command
+    public class callDebug : Command
     {
-        public Debug(String name) : base(name) { }
+        public callDebug(String name) : base(name) { }
 
         public override string execute(string[] args)
         {
@@ -20,7 +20,13 @@ namespace RuneOS.Commands
                 {
 
 
-                    RSOD.ErrorScreen("SELF_INIT: DEBUG");
+                    Debug.ErrorScreen("SELF_INIT: DEBUG");
+
+                }
+                else if (args[0]== "-f")
+                {
+
+                    Debug.FailedToBoot("SELF_INIT: DEBUG");
 
                 }
                 else
@@ -29,7 +35,7 @@ namespace RuneOS.Commands
                 }
 
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 Console.WriteLine("INVALID ARGS");
             }

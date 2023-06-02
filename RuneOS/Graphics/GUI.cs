@@ -1,101 +1,41 @@
-﻿using System;
+﻿using Cosmos.System.Graphics;
+using IL2CPU.API.Attribs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cosmos.System.Graphics;
 using System.Drawing;
-using Sys = Cosmos.System;
-using Cosmos.System;
-using System.Linq.Expressions;
+using Cosmos.Core.Memory;
 
 namespace RuneOS.Graphics
 {
     public class GUI
     {
 
-            private Canvas canvas;
-            private Pen pen;
-            private List<Tuple<Sys.Graphics.Point, Color>> savedPixles;
+        private static Canvas canvas;
 
-            private MouseState prevMouseState;
-
-            private Tabbar tabBar;
+        [ManifestResourceStream(ResourceName = "testimg.bmp")] public static byte[] test_image;
+        public static Bitmap bmp = new Bitmap(test_image);
 
 
-            private UInt32 pX, pY;
+        public void gui()
+        {
 
 
-            public GUI()
-            {
 
-                this.canvas = FullScreenCanvas.GetFullScreenCanvas();
-                this.canvas.Clear(Color.White);
+            canvas = FullScreenCanvas.GetFullScreenCanvas();
+            canvas.DrawFilledRectangle(new Pen(Color.White), 0, 0, 1920, 1080);
+            canvas.DrawImage(bmp,50,50);
 
-                this.pen = new Pen(Color.Black);
-                this.prevMouseState = MouseState.None;
-
-                this.pX=3;
-                this.pY=3;
-                this.savedPixles = new List<Tuple<Sys.Graphics.Point, Color>>();
+            Heap.Collect();
 
 
-                this.tabBar = new Tabbar(this.canvas);
 
-                MouseManager.ScreenHeight = (UInt32)this.canvas.Mode.Rows;
-                MouseManager.ScreenWidth = (UInt32)this.canvas.Mode.Columns;
+            canvas.Display();
 
-            }
-
-            public void handleGUInputs()
-            {
-
-                if (this.pX != MouseManager.X && this.pY != MouseManager.Y)
-                {
-
-                    if (MouseManager.X < 2 || MouseManager.Y < 2 || MouseManager.X > (MouseManager.ScreenWidth - 2) || MouseManager.Y > (MouseManager.ScreenWidth - 2))
-                        return;
-
-
-                    this.pX = MouseManager.X;
-                    this.pY = MouseManager.Y;
-
-                    Sys.Graphics.Point[] points = new Sys.Graphics.Point[]
-                    {
-                        new Sys.Graphics.Point((Int32)MouseManager.X,(Int32)MouseManager.Y),
-                        new Sys.Graphics.Point((Int32)MouseManager.X+1,(Int32)MouseManager.Y),
-                        new Sys.Graphics.Point((Int32)MouseManager.X-1,(Int32)MouseManager.Y),
-                        new Sys.Graphics.Point((Int32)MouseManager.X,(Int32)MouseManager.Y+1),
-                        new Sys.Graphics.Point((Int32)MouseManager.X,(Int32)MouseManager.Y-1)
-
-                    };
-
-                    foreach (Tuple<Sys.Graphics.Point, Color> pixelData in this.savedPixles)
-                    {
-                        this.canvas.DrawPoint(new Pen(pixelData.Item2), pixelData.Item1);
-                    }
-               
-                    this.savedPixles.Clear();
-
-                    foreach (Sys.Graphics.Point p in points)
-                    {
-                        this.savedPixles.Add(new Tuple<Sys.Graphics.Point, Color>(p, this.canvas.GetPointColor(p.X, p.Y)));
-                        this.canvas.DrawPoint(this.pen, p);
-
-
-                    }
-
-
-                }
-                if (MouseManager.MouseState == MouseState.Left && this.prevMouseState!=MouseState.Left)
-                    System.Console.Beep();
-
-                this.prevMouseState = MouseManager.MouseState;
-
-                this.canvas.Display();
-
-
-        }   
+            
+        }
         
 
 
