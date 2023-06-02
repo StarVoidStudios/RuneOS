@@ -22,8 +22,8 @@ namespace RuneOS.Commands
             this.commands.Add(new LaunchGUI("startx"));
             this.commands.Add(new Write("write"));
             this.commands.Add(new Mkfile("mkfile"));
-            this.commands.Add(new Delfile("delfile"));
-            this.commands.Add(new Read("read"));
+            this.commands.Add(new Delfile("rmfile"));
+            this.commands.Add(new Read("cat"));
             this.commands.Add(new miv("miv"));
             this.commands.Add(new rmdir("rmdir"));
             this.commands.Add(new mkdir("mkdir"));

@@ -13,20 +13,19 @@ namespace RuneOS.Commands
         public override string execute(string[] args)
         {
             return " " + "\n" + "Rune OS Help:" + "\n" +
-             "HELP: SHOWS THIS SCREEN" + "\n" +
-             "ABOUT: SHOWS THE ABOUT SCREEN" + "\n" +
-             "PWR: -P: SHUTS DOWN THE COMPUTER -R: REBOOTS THE COMPUTER" + "\n" +
-             "DIR: LIST FILES AND DIRECTORIES" + "\n" +
-             "CLS: CLEAR SCREEN" + "\n" +
-             "STARTX: LAUNCHES GRAPHICAL USER INTERFACE TEST" + "\n" +
-             "MKFILE (FILE NAME): CREATES FILE WITH GIVEN NAME" + "\n" +
-             "READ (FILE NAME): READ FILE " + "\n" +
-             "WRITE (FILE NAME): ALLOWS YOU TO WRITE TEXT TO GIVEN FILE" + "\n" +
-             "DELFILE (FILE NAME): REMOVES THE CHOSEN FILE FROM THE SYSTEM" + "\n" +
-             "DEBUG: ADMIN INFO ONLY (REMOVE FROM FINAL BUILD)" + "\n" +
-             "MKDIR: MAKES A DIRECTORY" + "\n" +
-             "RMDIR: REMOVES A DIRECTORY" + "\n" +
-             "MIV: START MIV TEXT EDITOR" + "\n";
+
+            "Help: Brings up this text" + "\n" +
+            "About: List info about the Operating System" + "\n" +
+            "PWR: <Args: -r -p> Controls power to the computer" + "\n" +
+            "DIR: List the files and directorys on the root of the drive" + "\n" +
+            "Mkfile <Filename.Ext>: Creates a file with the given name and extension (ex: test.txt)" + "\n" +
+            "Rmfile <Filename>: Removes the chosen file from the drive" + "\n" +
+            "Mkdir <Dir Name>: Creates a directory with the given name" + "\n" +
+            "Rmdir <Dir Name>: Removes the chosen directory" + "\n" +
+            "Peek <Dir Name/path>: Shows Files inside a diretory or path" + "\n" +
+            "Cat <Filename>: Prints out the contents of a given file" + "\n" +
+            "Miv: Launches the MIV text editor" + "\n" +
+            "CLS: Clears the screen and reprints the logo";
 
 
 
