@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmos.System.FileSystem;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,8 +22,17 @@ namespace RuneOS.Commands
 
             try
             {
-                Directory.Delete(@"0:\" + args[0]);
+                Directory.Delete(Kernel.CurrentDirectory + args[0]);
                 Console.WriteLine("Directory " + args[0] + " Was Removed");
+
+                if (Kernel.CurrentDirectory == args[0])
+                {
+                    return "CANNOT DELETE DIR YOU ARE CURRENTLY IN PLEASE BACK OUT AND TRY AGIAN";
+                }
+
+                
+
+
             }
             catch (Exception e)
             {

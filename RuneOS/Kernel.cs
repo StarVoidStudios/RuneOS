@@ -14,6 +14,9 @@ using Cosmos.System.Graphics;
 using Cosmos.HAL;
 using Cosmos.HAL.BlockDevice.Registers;
 using RuneOS.Utils;
+using IL2CPU.API.Attribs;
+using Cosmos.Core.Memory;
+using System.Drawing;
 
 namespace RuneOS
 {
@@ -22,20 +25,19 @@ namespace RuneOS
 
         private CommandManager commandManager;
         private CosmosVFS vfs;
-        public static GUI gui;
+        public static GUITEST gui;
+
+
+        public static string CurrentDirectory = @"0:\";
+        public static string CurrentVolume = @"0:\";
+
+        public static CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
         
-
-
-
-
-
-
 
         protected override void BeforeRun()
         {
-
-
-            var fs = new Sys.FileSystem.CosmosVFS();
+            
+           // var fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
 
             var logo = @" 
@@ -62,7 +64,7 @@ namespace RuneOS
             Console.WriteLine("RuneOS Boot Menu");
             Console.WriteLine("FileSystem: " + fs_type);
             Console.WriteLine("Free Disk: " + mbSpace + "MB");
-            
+            //Console.ForegroundColor = ConsoleColor.White;
 
         }
 
@@ -76,12 +78,8 @@ namespace RuneOS
                 File.Create(userFiles);
             }
 
-            if(Kernel.gui != null)
-            {
-                Kernel.gui.handleGUInputs();
-                return;
-            }
-            Console.Write("$:" + ">");
+
+            Console.Write("$:"+ CurrentDirectory + ">");
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
             //if (response == "read")
@@ -90,6 +88,7 @@ namespace RuneOS
             //    var nameFile = Console.ReadLine();
             //}
             Console.WriteLine(response);
+
 
         }
     }

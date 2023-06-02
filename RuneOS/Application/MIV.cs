@@ -277,11 +277,11 @@ namespace RuneOS.Application
             var file = Console.ReadLine();
             try
             {
-                if (File.Exists(@"0:\" + file))
+                if (File.Exists(Kernel.CurrentDirectory + file))
                 {
                     Console.WriteLine("Found file!");
                 }
-                else if (!File.Exists(@"0:\" + file))
+                else if (!File.Exists(Kernel.CurrentDirectory + file))
                 {
                     Console.WriteLine("Creating file!");
                     File.Create(@"0:\" +   file);

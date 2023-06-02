@@ -20,7 +20,7 @@ namespace RuneOS.Commands
 
             try
             {
-                Console.WriteLine(File.ReadAllText(@"0:\"+args[0]));
+                Console.WriteLine(File.ReadAllText(Kernel.CurrentDirectory +args[0]));
             }
             catch(Exception e) 
             { 

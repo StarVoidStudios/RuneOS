@@ -8,10 +8,11 @@ using System.Drawing;
 using Sys = Cosmos.System;
 using Cosmos.System;
 using System.Linq.Expressions;
+using Cosmos.System.Graphics.Fonts;
 
 namespace RuneOS.Graphics
 {
-    public class GUI
+    public class GUITEST
     {
 
             private Canvas canvas;
@@ -26,7 +27,7 @@ namespace RuneOS.Graphics
             private UInt32 pX, pY;
 
 
-            public GUI()
+            public GUITEST()
             {
 
                 this.canvas = FullScreenCanvas.GetFullScreenCanvas();
@@ -38,6 +39,9 @@ namespace RuneOS.Graphics
                 this.pX=3;
                 this.pY=3;
                 this.savedPixles = new List<Tuple<Sys.Graphics.Point, Color>>();
+
+
+            
 
 
                 this.tabBar = new Tabbar(this.canvas);
@@ -57,7 +61,7 @@ namespace RuneOS.Graphics
                         return;
 
 
-                    this.pX = MouseManager.X;
+                    pX = MouseManager.X;
                     this.pY = MouseManager.Y;
 
                     Sys.Graphics.Point[] points = new Sys.Graphics.Point[]

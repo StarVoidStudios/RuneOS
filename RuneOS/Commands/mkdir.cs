@@ -21,7 +21,7 @@ namespace RuneOS.Commands
 
             try
             {
-                Directory.CreateDirectory(@"0:\" + args[0]);
+                Directory.CreateDirectory(Kernel.CurrentDirectory + args[0]);
                 Console.WriteLine("Directory " + args[0] + " Was Created");
             }
             catch (Exception e)
