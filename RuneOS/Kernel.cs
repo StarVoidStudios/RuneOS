@@ -36,34 +36,53 @@ namespace RuneOS
 
         protected override void BeforeRun()
         {
-            
-           // var fs = new Sys.FileSystem.CosmosVFS();
+            Console.OutputEncoding = Cosmos.System.ExtendedASCII.CosmosEncodingProvider.Instance.GetEncoding(437);
+
+            // var fs = new Sys.FileSystem.CosmosVFS();
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
 
-            var logo = @" 
-  ____  _   _ _   _ _____    ___  ____  
- |  _ \| | | | \ | | ____|  / _ \/ ___| 
- | |_) | | | |  \| |  _|   | | | \___ \ 
- |  _ <| |_| | |\  | |___  | |_| |___) |
- |_| \_\\___/|_| \_|_____|  \___/|____/   
-    Property of StarVoid Studios: #0001A
-            ";
+            
+var logo =@"
+╔════════════════════════════════════════════════════════╗
+║     ____  _   _ _   _ _____    ___  ____       ___     ║
+║    |  _ \| | | | \ | | ____|  / _ \/ ___|     / \ \    ║
+║    | |_) | | | |  \| |  _|   | | | \___ \    / / \ \   ║
+║    |  _ <| |_| | |\  | |___  | |_| |___) |  / /   \_\  ║
+║    |_| \_\\___/|_| \_|_____|  \___/|____/   \ \   / /  ║
+║                                              \ \ / /   ║
+║    STARVVOID STUDIOS V0.3.10                  \_/_/    ║
+╚════════════════════════════════════════════════════════╝";
+
 
             var diskspace =fs.GetAvailableFreeSpace(@"0:\");
             var fs_type = fs.GetFileSystemType(@"0:\");
             var mbSpace = diskspace / 1000000;
-           
+            
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Clear();
             Console.WriteLine(logo);
-            
-        
+            Console.ForegroundColor = ConsoleColor.Gray;
+     
+
+            Console.ForegroundColor = ConsoleColor.White;
             this.commandManager = new CommandManager();
 
             Console.WriteLine("RuneOS Boot Menu");
-            Console.WriteLine("FileSystem: " + fs_type);
+            //Console.WriteLine("FileSystem: " + fs_type);
             Console.WriteLine("Free Disk: " + mbSpace + "MB");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
             //Console.ForegroundColor = ConsoleColor.White;
 
         }
@@ -78,8 +97,13 @@ namespace RuneOS
                 File.Create(userFiles);
             }
 
-
-            Console.Write("$:"+ CurrentDirectory + ">");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("RuneOS$");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(CurrentDirectory);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(">");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
             //if (response == "read")
@@ -87,6 +111,7 @@ namespace RuneOS
             //    Console.WriteLine("File Name: ");
             //    var nameFile = Console.ReadLine();
             //}
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(response);
 
 

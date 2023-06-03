@@ -27,7 +27,6 @@ namespace RuneOS.Commands
             this.commands.Add(new miv("miv"));
             this.commands.Add(new rmdir("rmdir"));
             this.commands.Add(new mkdir("mkdir"));
-            this.commands.Add(new ChangeDir("peek"));
             this.commands.Add(new callDebug("debug"));
             this.commands.Add(new info("info"));
             this.commands.Add(new cd("cd"));
@@ -61,6 +60,7 @@ namespace RuneOS.Commands
                    return cmd.execute(args.ToArray());
             }
 
+            Console.ForegroundColor = ConsoleColor.Red;
             return "BAD COMMAND";
 
 
