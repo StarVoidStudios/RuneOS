@@ -13,7 +13,7 @@ namespace RuneOS.Commands
         public override string execute(string[] args)
         {
             return "RUNE OS V0.3.1|| CODED BY: ENDERGAMES@STARVOIDSTUDIOS" + "\n" +
-                "CODENAME: APOLLO ||| VERSION 0.3.1.0601230001(NR)" + "\n" +
+                "CODENAME: APOLLO ||| VERSION 0.4.0.0603230001(NR)" + "\n" +
                 "NOT FOR RELEASE || PROPERTY OF STARVOID STUDIOS";
 
 

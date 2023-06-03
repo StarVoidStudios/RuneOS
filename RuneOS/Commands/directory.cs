@@ -19,14 +19,25 @@ namespace RuneOS.Commands
 
             try
             {
-                foreach (var file in directory_list)
-                { 
-                    Console.WriteLine("<FILE> " + file);
-                }
+
+                Console.WriteLine("<ITEMS IN:" + Kernel.CurrentDirectory + ">");
                 foreach (var dir in directory)
                 {
-                    Console.WriteLine("<DIR> " + dir);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("<DIR> ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(dir);
+                    Console.Write("\n");
+                }                
+                foreach (var file in directory_list)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("<FILE> ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(file);
+                    Console.Write("\n");
                 }
+
             }
             catch(Exception ex)
             {

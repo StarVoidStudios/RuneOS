@@ -272,6 +272,8 @@ namespace RuneOS.Application
         }
         public static void StartMIV()
         {
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Enter file's filename to open:");
             Console.WriteLine("If the specified file does not exist, it will be created.");
             var file = Console.ReadLine();
@@ -297,7 +299,7 @@ namespace RuneOS.Application
             Console.WriteLine("Do you want to open " + file + " content? (Yes/No)");
             if (Console.ReadLine().ToLower() == "yes" || Console.ReadLine().ToLower() == "y")
             {
-                text = miv(File.ReadAllText(@"0:\" + file));
+                text = miv(File.ReadAllText(Kernel.CurrentDirectory + file));
             }
             else
             {
@@ -308,7 +310,7 @@ namespace RuneOS.Application
 
             if (text != null)
             {
-                File.WriteAllText(@"0:\" + file, text);
+                File.WriteAllText(Kernel.CurrentDirectory + file, text);
                 Console.WriteLine("Content has been saved to " + file);
             }
             Console.WriteLine("Press any key to continue...");

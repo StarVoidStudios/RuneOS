@@ -19,7 +19,9 @@ namespace RuneOS.Commands
             var cpu = CPU.GetCPUVendorName();
             var uptime = CPU.GetCPUUptime();
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("SYSTEM INFORMATION");
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("CPU: " + cpu);
             Console.WriteLine("RAM: " + RAM);
             Console.WriteLine("UPTIME: " + uptime);
