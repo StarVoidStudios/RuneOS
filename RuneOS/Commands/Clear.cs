@@ -23,22 +23,29 @@ namespace RuneOS.Commands
 ║    | |_) | | | |  \| |  _|   | | | \___ \    / / \ \   ║
 ║    |  _ <| |_| | |\  | |___  | |_| |___) |  / /   \_\  ║
 ║    |_| \_\\___/|_| \_|_____|  \___/|____/   \ \   / /  ║
-║                                              \ \ / /   ║
+║                            THE CYBERDECK OS  \ \ / /   ║
 ║    STARVVOID STUDIOS V0.3.10                  \_/_/    ║
 ╚════════════════════════════════════════════════════════╝";
 
-            Console.WriteLine(logo);
-            var diskspace = Kernel.fs.GetAvailableFreeSpace(@"0:\");
+            var freeDiskspace = Kernel.fs.GetAvailableFreeSpace(@"0:\");
             var fs_type = Kernel.fs.GetFileSystemType(@"0:\");
-            var mbSpace = diskspace / 1000000;
+            var mbSpace = freeDiskspace / 1000000;
+            var diskspace = Kernel.fs.GetTotalSize(@"0:\");
+            var mbSpace1 = diskspace / 1000000;
+
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Clear();
+            Console.WriteLine(logo);
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("RuneOS Boot Menu");
-            //Console.WriteLine("FileSystem: " + fs_type);
-            Console.WriteLine("Free Disk: " + mbSpace + "MB");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
+           
+            Console.WriteLine("╔══════════════════════════════════════════════════╗");
+            Console.WriteLine("║ Disk Space: " + mbSpace + "MB / " + mbSpace1 + "MB                        ║");
+            Console.WriteLine("║ Type 'help' for a list of commands               ║");
+            Console.WriteLine("╚══════════════════════════════════════════════════╝");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("CyberDeck Home Screen");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");

@@ -314,7 +314,10 @@ namespace RuneOS.Application
                 Console.WriteLine("Content has been saved to " + file);
             }
             Console.WriteLine("Press any key to continue...");
+         
             Console.ReadKey(true);
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Clear();
         }
     }
 }

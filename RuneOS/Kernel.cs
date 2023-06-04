@@ -17,6 +17,7 @@ using RuneOS.Utils;
 using IL2CPU.API.Attribs;
 using Cosmos.Core.Memory;
 using System.Drawing;
+using Cosmos.Core.IOGroup;
 
 namespace RuneOS
 {
@@ -25,7 +26,7 @@ namespace RuneOS
 
         private CommandManager commandManager;
         private CosmosVFS vfs;
-        public static GUITEST gui;
+       // public static GUITEST gui;
 
 
         public static string CurrentDirectory = @"0:\";
@@ -33,7 +34,13 @@ namespace RuneOS
 
         public static CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
         
+        public static byte Second { get; }
 
+        public static byte Hour { get; }
+
+        public static byte Minute { get; }
+
+      
         protected override void BeforeRun()
         {
             Console.OutputEncoding = Cosmos.System.ExtendedASCII.CosmosEncodingProvider.Instance.GetEncoding(437);
@@ -49,15 +56,38 @@ var logo =@"
 ║    | |_) | | | |  \| |  _|   | | | \___ \    / / \ \   ║
 ║    |  _ <| |_| | |\  | |___  | |_| |___) |  / /   \_\  ║
 ║    |_| \_\\___/|_| \_|_____|  \___/|____/   \ \   / /  ║
-║                                              \ \ / /   ║
+║                            THE CYBERDECK OS  \ \ / /   ║
 ║    STARVVOID STUDIOS V0.4.0                   \_/_/    ║
 ╚════════════════════════════════════════════════════════╝";
 
-
-            var diskspace =fs.GetAvailableFreeSpace(@"0:\");
-            var fs_type = fs.GetFileSystemType(@"0:\");
-            var mbSpace = diskspace / 1000000;
             
+            var freeDiskspace =fs.GetAvailableFreeSpace(@"0:\");
+            var fs_type = fs.GetFileSystemType(@"0:\");
+            var mbSpace = freeDiskspace / 1000000;
+            var diskspace = fs.GetTotalSize(@"0:\");
+            var mbSpace1 = diskspace / 1000000;
+
+            // Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine(logo);
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Press Enter to boot");
+
+            Console.ReadKey();
+
+
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Clear();
@@ -67,13 +97,13 @@ var logo =@"
 
             Console.ForegroundColor = ConsoleColor.White;
             this.commandManager = new CommandManager();
-
-            Console.WriteLine("RuneOS Boot Menu");
-            //Console.WriteLine("FileSystem: " + fs_type);
-            Console.WriteLine("Free Disk: " + mbSpace + "MB");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
+            //54
+            Console.WriteLine("╔══════════════════════════════════════════════════╗");
+            Console.WriteLine("║ Disk Space: " + mbSpace + "MB / "+ mbSpace1+"MB                        ║");
+            Console.WriteLine("║ Type 'help' for a list of commands               ║");
+            Console.WriteLine("╚══════════════════════════════════════════════════╝");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("CyberDeck Home Screen");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
@@ -104,6 +134,7 @@ var logo =@"
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write(">");
             Console.ForegroundColor = ConsoleColor.Yellow;
+            
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
             //if (response == "read")
@@ -114,7 +145,7 @@ var logo =@"
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(response);
 
-
+           
         }
     }
 }
