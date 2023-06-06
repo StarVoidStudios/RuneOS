@@ -18,6 +18,7 @@ using IL2CPU.API.Attribs;
 using Cosmos.Core.Memory;
 using System.Drawing;
 using Cosmos.Core.IOGroup;
+using RuneOS.Graphics;
 
 namespace RuneOS
 {
@@ -25,7 +26,7 @@ namespace RuneOS
     {
 
         private CommandManager commandManager;
-        private CosmosVFS vfs;
+       // private CosmosVFS vfs;
        // public static GUITEST gui;
 
 
@@ -40,9 +41,12 @@ namespace RuneOS
 
         public static byte Minute { get; }
 
+        public static GUI gui;
       
         protected override void BeforeRun()
         {
+            //VGAScreen.SetGraphicsMode(VGADriver.ScreenSize.Size720x480, ColorDepth.ColorDepth16);
+            //VGAScreen.SetTextMode(VGADriver.TextSize.Size40x50);
             Console.OutputEncoding = Cosmos.System.ExtendedASCII.CosmosEncodingProvider.Instance.GetEncoding(437);
 
             // var fs = new Sys.FileSystem.CosmosVFS();
@@ -97,15 +101,17 @@ var logo =@"
 
             Console.ForegroundColor = ConsoleColor.White;
             this.commandManager = new CommandManager();
-            //54
+           
             Console.WriteLine("╔══════════════════════════════════════════════════╗");
             Console.WriteLine("║ Disk Space: " + mbSpace + "MB / "+ mbSpace1+"MB                        ║");
             Console.WriteLine("║ Type 'help' for a list of commands               ║");
             Console.WriteLine("╚══════════════════════════════════════════════════╝");
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("CyberDeck Home Screen");
-            Console.WriteLine("");
-            Console.WriteLine("");
+
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════");
+            Console.WriteLine("                     CYBER DECK INFO SCREEN");
+            Console.WriteLine("══════════════════════════════════════════════════════════════════");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
@@ -119,6 +125,13 @@ var logo =@"
 
         protected override void Run()
         {
+
+            //if (Kernel.gui != null)
+            //{
+            //    Kernel.gui.handleGUIInputs();
+            //    return;
+
+            //}
 
             var userFiles = @"0:\users.dat";
 
@@ -137,11 +150,12 @@ var logo =@"
             
             String response;
             response = commandManager.input(Console.ReadLine().ToLower());
-            //if (response == "read")
-            //{
-            //    Console.WriteLine("File Name: ");
-            //    var nameFile = Console.ReadLine();
-            //}
+
+
+
+
+
+
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(response);
 

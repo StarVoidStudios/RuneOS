@@ -19,7 +19,7 @@ namespace RuneOS.Commands
             this.commands.Add(new Power("pwr"));
             this.commands.Add(new directory("dir"));
             this.commands.Add(new Clear("cls"));
-           // this.commands.Add(new LaunchGUI("startx"));
+            this.commands.Add(new LaunchGui("startx"));
             this.commands.Add(new Write("write"));
             this.commands.Add(new Mkfile("mkfile"));
             this.commands.Add(new Delfile("rmfile"));

@@ -3,85 +3,94 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Cosmos.Core.IOGroup;
+using Cosmos.HAL;
 using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
+using IL2CPU.API.Attribs;
 using Sys = Cosmos.System;
-
+using RuneOS.Commands;
+using Cosmos.System;
 
 
 namespace RuneOS.Commands
 {
+
+    
     public class Graphics : Command
     {
-        private Pen pen;
+        //private Pen pen;
         Canvas canvas;
+        private CommandManager cmd;
+        public static class MouseManager {   
 
+        public static uint X;
+        public static uint Y;
+        public static MouseState MouseState;
+        public static uint ScreenHeight;
+        public static uint ScreenWidth;
+
+
+
+        };
+
+  
+
+
+        [ManifestResourceStream(ResourceName = "RuneOS.images.Cursor.bmp")] static byte[] cursorimg;
+        [ManifestResourceStream(ResourceName = "RuneOS.images.testback.bmp")] static byte[] testback;
+
+        public static Bitmap bmp = new Bitmap(cursorimg);
+        public static Bitmap background = new Bitmap(testback);
         public Graphics(String name) : base(name) { }
 
+       
 
-        private readonly Bitmap bitmap = new Bitmap(10, 10,
-                new byte[] { 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0,
-                    255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255,
-                    0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255,
-                    0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 23, 59, 88, 255,
-                    23, 59, 88, 255, 0, 255, 243, 255, 0, 255, 243, 255, 23, 59, 88, 255, 23, 59, 88, 255, 0, 255, 243, 255, 0,
-                    255, 243, 255, 0, 255, 243, 255, 23, 59, 88, 255, 153, 57, 12, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255,
-                    243, 255, 0, 255, 243, 255, 153, 57, 12, 255, 23, 59, 88, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243,
-                    255, 0, 255, 243, 255, 0, 255, 243, 255, 72, 72, 72, 255, 72, 72, 72, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0,
-                    255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 72, 72,
-                    72, 255, 72, 72, 72, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255,
-                    10, 66, 148, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255,
-                    243, 255, 10, 66, 148, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 10, 66, 148, 255, 10, 66, 148, 255,
-                    10, 66, 148, 255, 10, 66, 148, 255, 10, 66, 148, 255, 10, 66, 148, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255,
-                    243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 10, 66, 148, 255, 10, 66, 148, 255, 10, 66, 148, 255, 10, 66, 148,
-                    255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255,
-                    0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, 0, 255, 243, 255, }, ColorDepth.ColorDepth32);
+        ConsoleKeyInfo cki;
 
 
         public override string execute(string[] args)
         {
 
             canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
-            canvas.Clear(Color.Blue);
+            canvas.Clear(Color.Black);
+
+            
+     
 
             try
             {
+                MouseManager.ScreenWidth = 640;
+                MouseManager.ScreenHeight = 480;
                 
                 Pen pen = new Pen(Color.Aqua);
+                canvas.DrawImageAlpha(background,0,0);
 
-                // A red Point
-                canvas.DrawPoint(new Pen(Color.Red), 69, 69);
+                //canvas.DrawFilledRectangle(new Pen(Color.Gray), 0, 0, 638, 20);
+                //canvas.DrawFilledRectangle(new Pen(Color.DarkGray), 1, 1, 120 , 18);
 
-                // A GreenYellow horizontal line
-                canvas.DrawLine(new Pen(Color.Aqua), 250, 100, 400, 100);
+                //canvas.DrawString("RUNE OS", PCScreenFont.Default, new Pen(Color.White), 320, 5);
+                //canvas.DrawString("10:00", PCScreenFont.Default, new Pen(Color.Black), 40, 4);
 
-                // An IndianRed vertical line
-                canvas.DrawLine(new Pen(Color.IndianRed), 350, 150, 350, 250);
 
-                // A MintCream diagonal line
-                canvas.DrawLine(new Pen(Color.MintCream), 250, 150, 400, 250);
-
-                // A PaleVioletRed rectangle
-                canvas.DrawRectangle(new Pen(Color.PaleVioletRed), 350, 350, 80, 60);
-
-                // A LimeGreen rectangle
-                canvas.DrawRectangle(new Pen(Color.LimeGreen), 450, 450, 80, 60);
-
-                // A bitmap
-                canvas.DrawImage(bitmap, 100, 150);
-
-                
+                //canvas.DrawString("", PCScreenFont.Default, new Pen(Color.Gold), 5, 400); 
+               // canvas.DrawImageAlpha(bmp,(int)MouseManager.X,(int)MouseManager.Y); // drawing mouse
 
                 canvas.Display(); // Required for something to be displayed when using a double buffered driver
 
-                Console.ReadKey();
+
+                System.Console.ReadKey();
                 Sys.Power.Reboot();
+
+                //Console.ReadKey();
+               // Sys.Power.Reboot();
             }
             catch (Exception e)
             {
-                return "Exception occurred: " + e.Message;
+
                 Sys.Power.Shutdown();
             }
 
