@@ -5,4 +5,7 @@
 #### Current Features of RuneOS
 * Basic Shell Prompt
 * MIV Text editior
-* Open Source 
+* Open Source
+* Graphical Test 
+* VERY BETA GUI
+
