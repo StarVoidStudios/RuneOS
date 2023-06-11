@@ -17,15 +17,15 @@ namespace RuneOS.Commands
 
             Console.ForegroundColor = ConsoleColor.Red;
             var logo = @"
-╔════════════════════════════════════════════════════════╗
-║     ____  _   _ _   _ _____    ___  ____       ___     ║
-║    |  _ \| | | | \ | | ____|  / _ \/ ___|     / \ \    ║
-║    | |_) | | | |  \| |  _|   | | | \___ \    / / \ \   ║
-║    |  _ <| |_| | |\  | |___  | |_| |___) |  / /   \_\  ║
-║    |_| \_\\___/|_| \_|_____|  \___/|____/   \ \   / /  ║
-║                            THE CYBERDECK OS  \ \ / /   ║
-║    STARVVOID STUDIOS V0.3.10                  \_/_/    ║
-╚════════════════════════════════════════════════════════╝";
+ ________________________________________________________
+|     ____  _   _ _   _ _____    ___  ____       ___     |
+|    |  _ \| | | | \ | | ____|  / _ \/ ___|     / \ \    |
+|    | |_) | | | |  \| |  _|   | | | \___ \    / / \ \   |
+|    |  _ <| |_| | |\  | |___  | |_| |___) |  / /   \_\  |
+|    |_| \_\\___/|_| \_|_____|  \___/|____/   \ \   / /  |
+|                            THE CYBERDECK OS  \ \ / /   |
+|    STARVVOID STUDIOS V0.4.0                   \_/_/    |
+ -------------------------------------------------------- ";
 
             var freeDiskspace = Kernel.fs.GetAvailableFreeSpace(@"0:\");
             var fs_type = Kernel.fs.GetFileSystemType(@"0:\");
@@ -39,11 +39,11 @@ namespace RuneOS.Commands
             Console.WriteLine(logo);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.White;
-           
-            Console.WriteLine("╔══════════════════════════════════════════════════╗");
-            Console.WriteLine("║ Disk Space: " + mbSpace + "MB / " + mbSpace1 + "MB                        ║");
-            Console.WriteLine("║ Type 'help' for a list of commands               ║");
-            Console.WriteLine("╚══════════════════════════════════════════════════╝");
+
+            Console.WriteLine(" -------------------------------------------------- ");
+            Console.WriteLine("| Disk Space: " + mbSpace + "MB / " + mbSpace1 + "MB                        |");
+            Console.WriteLine("| Type 'help' for a list of commands               |");
+            Console.WriteLine(" -------------------------------------------------- ");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("CyberDeck Home Screen");
             Console.WriteLine("");

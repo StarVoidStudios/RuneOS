@@ -9,6 +9,10 @@ using System.Drawing;
 using Cosmos.System.Graphics;
 using IL2CPU.API.Attribs;
 using Cosmos.System.Graphics.Fonts;
+using PrismAPI.Hardware.GPU;
+
+using Cosmos.Core.Memory;
+
 
 namespace RuneOS.Graphics
 {
@@ -16,7 +20,7 @@ namespace RuneOS.Graphics
     {
 
         public Canvas canvas;
-        private Pen pen;
+        //private Pen pen;
 
 
         private MouseState prevMouseState;
@@ -28,58 +32,124 @@ namespace RuneOS.Graphics
         public static Bitmap bmp = new Bitmap(cursorimg);
         public static Bitmap background = new Bitmap(testback);
 
-        public GUI()
+
+
+        public void Init()
         {
-
-
-
+            
             canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
             canvas.Clear(Color.Black);
 
-            pen = new Pen(Color.Black);
+            
             prevMouseState = MouseState.None;
 
+            MouseManager.ScreenHeight = 480;
+            MouseManager.ScreenWidth = 640;
+
+            
+        }
+
+
+
+        public void draw()
+        {
+            // Draws the Main Screen for the GUI
             canvas.DrawImageAlpha(background, 0, 0);
+            canvas.DrawFilledRectangle(Color.Gray, 0, 0, 638, 20);
+            canvas.DrawFilledRectangle(Color.DarkGray, 1, 1, 120, 18);
+            //canvas.DrawFilledRectangle(new Pen(Color.Red), 630, 0, 10, 20);
+            canvas.DrawFilledRectangle(Color.Gray, 620, 460, 640, 20);
 
-            canvas.DrawFilledRectangle(new Pen(Color.Gray), 0, 0, 638, 20);
-            canvas.DrawFilledRectangle(new Pen(Color.DarkGray), 1, 1, 120, 18);
+            //DRAWS THE TEXT AND TIME
+            var time = "" + DateTime.Now;
+            canvas.DrawString("RUNE OS HOME", PCScreenFont.Default, (Color.White), 300, 5);
+            canvas.DrawString(time, PCScreenFont.Default, Color.Black, 1, 1);
 
-            canvas.DrawString("RUNE OS", PCScreenFont.Default, new Pen(Color.White), 320, 5);
-            canvas.DrawString("10:00", PCScreenFont.Default, new Pen(Color.Black), 40, 4);
+            //Draws a ICON
+
+            canvas.DrawFilledRectangle(Color.Blue, 50, 50, 40, 40);
 
             
 
+            // Sets Mouse Image
 
-            MouseManager.ScreenHeight = (UInt32)canvas.Mode.Rows;
-            MouseManager.ScreenWidth = (UInt32)canvas.Mode.Columns;
+            canvas.DrawImageAlpha(bmp, (int)MouseManager.X, (int)MouseManager.Y);
+            canvas.Display();
 
+        }
 
-            this.pX = MouseManager.X;
-            this.pY = MouseManager.Y;
-
-            canvas.DrawImageAlpha(bmp, (Int32)MouseManager.X, (Int32)MouseManager.Y);
-
-
-            if (MouseManager.MouseState == MouseState.Left && this.prevMouseState != MouseState.Left)
+        public void run()
+        {
+            Init();
+            while (true)
             {
 
-                System.Console.Beep(500, 500);
-                Sys.Power.Reboot();
+                draw();
+                Heap.Init();
+                Heap.Collect();
+                
+
             }
 
 
+        }
+               
 
 
-            canvas.Display();
-
+        public GUI()
+        {
+            run();
         }
 
 
 
 
+
+
+
+            
+             
+
+
+
+
+           
+
+
+
+
+
+
+
+ 
+
+            
+
+                
+               
+          
+
+
+
+
+
+
+
+
+
+               
+
+            
+
+
+        }
+
+
+
+        
     }
 
 
 
- }
+ 
 

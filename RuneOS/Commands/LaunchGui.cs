@@ -11,8 +11,9 @@ namespace RuneOS.Commands
     public class LaunchGui : Command
     {
 
+        
+        private PrisimGUI gui;
 
-        private GUI gui;
         public LaunchGui(String name) : base(name) { }
 
         public override string execute(string[] args)
@@ -23,7 +24,8 @@ namespace RuneOS.Commands
             }
 
 
-            this.gui = new GUI();
+            //gui = new GUI();
+            gui = new PrisimGUI();
             
             return "";
 

@@ -64,7 +64,7 @@ namespace RuneOS.Commands
 
             catch (Exception ex)
             {
-                Debug.ErrorScreen("");
+                Debug.ErrorScreen(" ");
                 return " ";
             }
 

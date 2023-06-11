@@ -61,13 +61,14 @@ namespace RuneOS.Commands
             
      
 
-            try
-            {
-                MouseManager.ScreenWidth = 640;
-                MouseManager.ScreenHeight = 480;
+            
+           
+            MouseManager.ScreenWidth = 640;
+            MouseManager.ScreenHeight = 480;
+           
                 
-                Pen pen = new Pen(Color.Aqua);
-                canvas.DrawImageAlpha(background,0,0);
+            //Pen pen = new Pen(Color.Aqua);
+            canvas.DrawImageAlpha(background,0,0);
 
                 //canvas.DrawFilledRectangle(new Pen(Color.Gray), 0, 0, 638, 20);
                 //canvas.DrawFilledRectangle(new Pen(Color.DarkGray), 1, 1, 120 , 18);
@@ -79,22 +80,13 @@ namespace RuneOS.Commands
                 //canvas.DrawString("", PCScreenFont.Default, new Pen(Color.Gold), 5, 400); 
                // canvas.DrawImageAlpha(bmp,(int)MouseManager.X,(int)MouseManager.Y); // drawing mouse
 
-                canvas.Display(); // Required for something to be displayed when using a double buffered driver
+            canvas.Display(); // Required for something to be displayed when using a double buffered driver
 
 
-                System.Console.ReadKey();
-                Sys.Power.Reboot();
-
-                //Console.ReadKey();
-               // Sys.Power.Reboot();
-            }
-            catch (Exception e)
-            {
-
-                Sys.Power.Shutdown();
-            }
-
+            System.Console.ReadKey();
+            Sys.Power.Reboot();
             return "";
+     
 
 
 

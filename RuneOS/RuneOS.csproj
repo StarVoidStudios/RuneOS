@@ -49,4 +49,10 @@
       <Folder Include="Hardware\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="PrismAPI">
+        <HintPath>Lib\PrismAPI.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
